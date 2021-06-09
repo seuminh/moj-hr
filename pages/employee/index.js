@@ -27,9 +27,6 @@ const Index = () => {
    useEffect(() => {}, []);
 
    const onSearch = async () => {
-      //   const dataInput = form.getFieldsValue(true);
-      //   console.log(dataInput);
-      //   await fetchEmployees(dataInput.search);
       setModalSearch(false);
    };
 

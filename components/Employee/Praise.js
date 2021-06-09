@@ -12,6 +12,7 @@ import {
    Select,
    DatePicker,
    Table,
+   Modal,
 } from "antd";
 
 const { Option } = Select;
@@ -24,7 +25,7 @@ import {
 } from "@ant-design/icons";
 
 const Praise = ({ userData }) => {
-   const [visible, setVisible] = useState(false);
+   const [modalAdd, setModalAdd] = useState(false);
    const [signDate, setSignDate] = useState();
    const [praiseList, setPraiseList] = useState([]);
    const [form] = Form.useForm();
@@ -34,12 +35,8 @@ const Praise = ({ userData }) => {
       setSignDate(dateString);
    };
 
-   const showDrawer = () => {
-      setVisible(true);
-   };
-
-   const onClose = () => {
-      setVisible(false);
+   const toggleModal = () => {
+      setModalAdd(!modalAdd);
    };
 
    const onClear = () => {
@@ -48,16 +45,11 @@ const Praise = ({ userData }) => {
 
    const onSubmit = () => {};
 
-   useEffect(() => {
-      if (visible === false) {
-         setEditData(null);
-      }
-      form.resetFields();
-   }, [visible]);
+   useEffect(() => {}, []);
 
    const onEdit = (record) => {
       setEditData(record);
-      setVisible(true);
+      setModalAdd(true);
    };
 
    const onDelete = () => {};
@@ -127,7 +119,7 @@ const Praise = ({ userData }) => {
 
    return (
       <div>
-         <Button icon={<PlusOutlined />} onClick={showDrawer}>
+         <Button icon={<PlusOutlined />} onClick={toggleModal}>
             បញ្ចូលការលើកសសើរ
          </Button>
          <div style={{ marginTop: 20 }}>
@@ -135,11 +127,11 @@ const Praise = ({ userData }) => {
          </div>
 
          {/* Drawer */}
-         <Drawer
+         <Modal
             title="បញ្ចូលព័ត៌មានការលើកសសើរ"
             width={550}
-            onClose={onClose}
-            visible={visible}
+            onCancel={toggleModal}
+            visible={modalAdd}
             bodyStyle={{ paddingBottom: 80 }}
             footer={
                <div
@@ -429,7 +421,7 @@ const Praise = ({ userData }) => {
                   </Col>
                </Row>
             </Form>
-         </Drawer>
+         </Modal>
       </div>
    );
 };
