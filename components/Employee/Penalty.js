@@ -129,7 +129,7 @@ const Penalty = ({ userData }) => {
          {/* Drawer */}
          <Modal
             title="បញ្ចូលការដាក់ពិន័យ"
-            width={550}
+            width={800}
             onCancel={toggleModal}
             visible={modalAdd}
             bodyStyle={{ paddingBottom: 80 }}

@@ -9,7 +9,7 @@ const Footer = () => {
             marginTop: 20,
          }}
       >
-         <p>Footer Text</p>
+         <p>រក្សាសិទ្ធ © 2021 ក្រសួងយុត្តិធម៌</p>
       </div>
    );
 };

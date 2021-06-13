@@ -24,7 +24,7 @@ import {
    DeleteOutlined,
    DownOutlined,
 } from "@ant-design/icons";
-import api from "../../utils/api";
+import api from "@/utils/api";
 
 const { Option } = Select;
 

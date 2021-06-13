@@ -129,7 +129,7 @@ const Praise = ({ userData }) => {
          {/* Drawer */}
          <Modal
             title="បញ្ចូលព័ត៌មានការលើកសសើរ"
-            width={550}
+            width={800}
             onCancel={toggleModal}
             visible={modalAdd}
             bodyStyle={{ paddingBottom: 80 }}

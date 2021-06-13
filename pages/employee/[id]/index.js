@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../../../styles/Employee.module.css";
+import styles from "@/styles/Employee.module.css";
 
 import { Tabs, Col, Row, Button } from "antd";
 
@@ -13,18 +13,42 @@ import {
 
 const { TabPane } = Tabs;
 
-import General from "../../../components/Employee/General";
-import Rank from "../../../components/Employee/Rank";
-import Family from "../../../components/Employee/Family";
-import Education from "../../../components/Employee/Education";
-import WorkHistory from "../../../components/Employee/WorkHistory";
-import Status from "../../../components/Employee/Status";
-import Praise from "../../../components/Employee/Praise";
-import Penalty from "../../../components/Employee/Penalty";
+import General from "@/components/Employee/General";
+import Rank from "@/components/Employee/Rank";
+import Family from "@/components/Employee/Family";
+import Education from "@/components/Employee/Education";
+import WorkHistory from "@/components/Employee/WorkHistory";
+import Status from "@/components/Employee/Status";
+import Praise from "@/components/Employee/Praise";
+import Penalty from "@/components/Employee/Penalty";
 
-import api from "../../../utils/api";
+import api from "@/utils/api";
+import { readFileFolderData } from "@/lib/ReadFileFolderData";
 
-export default function Home() {
+export async function getServerSideProps({ params }) {
+   const ministryStructure = await readFileFolderData("Structure.json");
+   const statusOfficer = await readFileFolderData("StatusOfficer.json");
+   const ministryList = await readFileFolderData("Ministry.json");
+   const rankList = await readFileFolderData("Rank.json");
+   const letterTypes = await readFileFolderData("LetterTypes.json");
+   return {
+      props: {
+         ministryStructure,
+         statusOfficer,
+         letterTypes,
+         rankList,
+         ministryList,
+      },
+   };
+}
+
+export default function Home({
+   ministryStructure,
+   statusOfficer,
+   ministryList,
+   letterTypes,
+   rankList,
+}) {
    return (
       <div className={styles.container}>
          <Head>
@@ -96,7 +120,9 @@ export default function Home() {
                   }
                   key="5"
                >
-                  <WorkHistory></WorkHistory>
+                  <WorkHistory
+                     ministryStructure={ministryStructure}
+                  ></WorkHistory>
                </TabPane>
                <TabPane
                   tab={
@@ -107,7 +133,12 @@ export default function Home() {
                   }
                   key="6"
                >
-                  <Status></Status>
+                  <Status
+                     rankList={rankList}
+                     letterTypes={letterTypes}
+                     ministryList={ministryList}
+                     statusOfficer={statusOfficer}
+                  ></Status>
                </TabPane>
                <TabPane
                   tab={

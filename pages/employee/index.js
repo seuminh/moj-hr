@@ -5,7 +5,7 @@ import Link from "next/link";
 import { EditOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 
 import { Table, Button, Modal, Form, Col, Row, Input, Select } from "antd";
-import api from "../../utils/api";
+import api from "@/utils/api";
 
 const { Option } = Select;
 
