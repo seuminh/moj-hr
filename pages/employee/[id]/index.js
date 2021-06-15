@@ -6,9 +6,9 @@ import styles from "@/styles/Employee.module.css";
 import { Tabs, Col, Row, Button } from "antd";
 
 import {
-  HomeOutlined,
-  DatabaseOutlined,
-  UserOutlined,
+   HomeOutlined,
+   DatabaseOutlined,
+   UserOutlined,
 } from "@ant-design/icons";
 
 const { TabPane } = Tabs;
@@ -26,154 +26,163 @@ import api from "@/utils/api";
 import { readFileFolderData } from "@/lib/ReadFileFolderData";
 
 export async function getServerSideProps({ params }) {
-  const ministryStructure = await readFileFolderData("Structure.json");
-  const statusOfficer = await readFileFolderData("StatusOfficer.json");
-  const ministryList = await readFileFolderData("Ministry.json");
-  const rankList = await readFileFolderData("Rank.json");
-  const letterTypes = await readFileFolderData("LetterTypes.json");
-  return {
-    props: {
-      ministryStructure,
-      statusOfficer,
-      letterTypes,
-      rankList,
-      ministryList,
-    },
-  };
+   // const res = await api.get("/api/users/" + params.id);
+   const ministryStructure = await readFileFolderData("Structure.json");
+   const statusOfficer = await readFileFolderData("StatusOfficer.json");
+   const ministryList = await readFileFolderData("Ministry.json");
+   const rankList = await readFileFolderData("Rank.json");
+   const letterTypes = await readFileFolderData("LetterTypes.json");
+   return {
+      props: {
+         ministryStructure,
+         statusOfficer,
+         letterTypes,
+         rankList,
+         ministryList,
+         // user: res.data,
+      },
+   };
 }
 
 export default function Home({
-  ministryStructure,
-  statusOfficer,
-  ministryList,
-  letterTypes,
-  rankList,
+   ministryStructure,
+   statusOfficer,
+   ministryList,
+   letterTypes,
+   rankList,
 }) {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>ព័ត៌មានមន្រ្តីរាជការ</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-        ></meta>
-      </Head>
+   return (
+      <div className={styles.container}>
+         <Head>
+            <title>ព័ត៌មានមន្រ្តីរាជការ</title>
+            <link rel="icon" href="/favicon.ico" />
+            <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+            ></meta>
+         </Head>
 
-      <div className={styles.userInfo}>
-        {/* Specific Info */}
-        <Tabs
-          defaultActiveKey="1"
-          size="small"
-          className={styles.specificInfo}
-          centered
-        >
-          <TabPane
-            tab={
-              <span>
-                <DatabaseOutlined />
-                ព័ត៌មានទូទៅ
-              </span>
+         <div className={styles.userInfo}>
+            {/* Specific Info */}
+            <Tabs
+               defaultActiveKey="1"
+               size="small"
+               className={styles.specificInfo}
+               centered
+            >
+               <TabPane
+                  tab={
+                     <span>
+                        <DatabaseOutlined />
+                        ព័ត៌មានទូទៅ
+                     </span>
+                  }
+                  key="1"
+               >
+                  <General></General>
+               </TabPane>
+               <TabPane
+                  tab={
+                     <span>
+                        <DatabaseOutlined />
+                        ឋានន្តរសកិ្ត និងថ្នាក់
+                     </span>
+                  }
+                  key="2"
+               >
+                  {/* <Rank userData={user}></Rank> */}
+                  <Rank></Rank>
+               </TabPane>
+               <TabPane
+                  tab={
+                     <span>
+                        <DatabaseOutlined />
+                        គ្រួសារ
+                     </span>
+                  }
+                  key="3"
+               >
+                  <Family></Family>
+               </TabPane>
+               <TabPane
+                  tab={
+                     <span>
+                        <DatabaseOutlined />
+                        កម្រិតវប្បធម៌
+                     </span>
+                  }
+                  key="4"
+               >
+                  {/* <Education userData={user}></Education> */}
+                  <Education></Education>
+               </TabPane>
+               <TabPane
+                  tab={
+                     <span>
+                        <DatabaseOutlined />
+                        ប្រវត្តិការងារ
+                     </span>
+                  }
+                  key="5"
+               >
+                  <WorkHistory
+                     ministryStructure={ministryStructure}
+                  ></WorkHistory>
+               </TabPane>
+               <TabPane
+                  tab={
+                     <span>
+                        <DatabaseOutlined />
+                        ស្ថានភាពមន្រ្ដី
+                     </span>
+                  }
+                  key="6"
+               >
+                  <Status
+                     //  userData={user}
+                     rankList={rankList}
+                     letterTypes={letterTypes}
+                     ministryList={ministryList}
+                     statusOfficer={statusOfficer}
+                  ></Status>
+               </TabPane>
+               <TabPane
+                  tab={
+                     <span>
+                        <DatabaseOutlined />
+                        ការដាក់ពិន័យ
+                     </span>
+                  }
+                  key="7"
+               >
+                  {/* <Penalty userData={user}></Penalty> */}
+                  <Penalty></Penalty>
+               </TabPane>
+               <TabPane
+                  tab={
+                     <span>
+                        <DatabaseOutlined />
+                        ការលើកសសើរ
+                     </span>
+                  }
+                  key="8"
+               >
+                  {/* <Praise userData={user}></Praise> */}
+                  <Praise></Praise>
+               </TabPane>
+            </Tabs>
+         </div>
+         <style global jsx>{`
+            .ant-tabs-tab-btn span {
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               gap: 1rem;
             }
-            key="1"
-          >
-            <General></General>
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <DatabaseOutlined />
-                ឋានន្តរសកិ្ត និងថ្នាក់
-              </span>
+            .ant-tabs-tab-btn .anticon {
+               margin-right: 0;
             }
-            key="2"
-          >
-            <Rank></Rank>
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <DatabaseOutlined />
-                គ្រួសារ
-              </span>
-            }
-            key="3"
-          >
-            <Family></Family>
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <DatabaseOutlined />
-                កម្រិតវប្បធម៌
-              </span>
-            }
-            key="4"
-          >
-            <Education></Education>
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <DatabaseOutlined />
-                ប្រវត្តិការងារ
-              </span>
-            }
-            key="5"
-          >
-            <WorkHistory ministryStructure={ministryStructure}></WorkHistory>
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <DatabaseOutlined />
-                ស្ថានភាពមន្រ្ដី
-              </span>
-            }
-            key="6"
-          >
-            <Status
-              rankList={rankList}
-              letterTypes={letterTypes}
-              ministryList={ministryList}
-              statusOfficer={statusOfficer}
-            ></Status>
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <DatabaseOutlined />
-                ការដាក់ពិន័យ
-              </span>
-            }
-            key="7"
-          >
-            <Penalty></Penalty>
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <DatabaseOutlined />
-                ការលើកសសើរ
-              </span>
-            }
-            key="8"
-          >
-            <Praise></Praise>
-          </TabPane>
-        </Tabs>
+         `}</style>
       </div>
-      <style global jsx>{`
-        .ant-tabs-tab-btn span {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 1rem;
-        }
-        .ant-tabs-tab-btn .anticon {
-          margin-right: 0;
-        }
-      `}</style>
-    </div>
-  );
+   );
 }

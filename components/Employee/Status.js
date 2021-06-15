@@ -33,6 +33,9 @@ const Status = ({ statusOfficer, ministryList, letterTypes, rankList }) => {
    const [formStatus] = Form.useForm();
    const [modalAdd, setModalAdd] = useState(false);
    const [nowOption, setNowOption] = useState(true);
+   // const [officerStatusList, setOfficerStatusList] = useState(
+   //    userData.officerStatus ? [...userData.officerStatus] : []
+   //  );
    const [officerStatusList, setOfficerStatusList] = useState([]);
    const [editData, setEditData] = useState(null);
 
@@ -75,18 +78,52 @@ const Status = ({ statusOfficer, ministryList, letterTypes, rankList }) => {
       formStatus.resetFields();
    };
 
-   const onSubmit = () => {};
+   const onSubmit = () => {
+      // const dataInput = formStatus.getFieldsValue(true);
+      // formStatus.validateFields().then(async () => {
+      //   let updateData;
+      //   if (editData) {
+      //     updateData = {
+      //       officerStatus: officerStatusList.map((v) =>
+      //         v._id === editData._id ? dataInput : v
+      //       ),
+      //     };
+      //   } else {
+      //     updateData = { officerStatus: [...officerStatusList, dataInput] };
+      //   }
+      //   const res = await api.put(`/api/users/${userData.id}`, updateData);
+      //   setVisible(false);
+      //   setOfficerStatusList(res.data.officerStatus);
+      //   formStatus.resetFields();
+      // });
+   };
 
-   useEffect(() => {}, []);
+   // useEffect(() => {
+   //    if (visible === false) {
+   //      setEditData(null);
+   //    }
+   //    formStatus.resetFields();
+   //  }, [visible]);
 
    const onEdit = (record) => {
       setEditData(record);
       setVisible(true);
    };
 
-   const onDelete = async (record) => {};
+   const onDelete = async (record) => {
+      // let res = await api.put(`/api/users/${userData.id}`, {
+      //    officerStatus: officerStatusList.filter((v) => v._id !== record._id),
+      //  });
+      //  setOfficerStatusList(res.data.officerStatus);
+   };
 
-   const onSave = () => {};
+   const onSave = () => {
+      // const data = formInfo.getFieldsValue(true);
+      // formInfo.validateFields().then(async () => {
+      //   const res = await api.put(`/api/users/${userData.id}`, data);
+      //   console.log(res);
+      // });
+   };
 
    const actionMenu = (record) => {
       return (
@@ -167,7 +204,17 @@ const Status = ({ statusOfficer, ministryList, letterTypes, rankList }) => {
             layout="vertical"
             hideRequiredMark
             form={formInfo}
-            initialValues={{}}
+            initialValues={
+               {
+                  // ...userData,
+                  // employmentDate: userData.employmentDate
+                  //    ? moment(userData.employmentDate)
+                  //    : null,
+                  // fullyEmploymentDate: userData.fullyEmploymentDate
+                  //    ? moment(userData.fullyEmploymentDate)
+                  //    : null,
+               }
+            }
          >
             <Row gutter={16}>
                <Col span={6}>

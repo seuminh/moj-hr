@@ -34,6 +34,7 @@ const Rank = ({ userData }) => {
    const [startDate, setStartDate] = useState();
    const [endDate, setEndDate] = useState();
    const [nowOption, setNowOption] = useState(true);
+   //   const [rankList, setRankList] = useState([...userData.rank])
    const [rankList, setRankList] = useState([]);
    const [editData, setEditData] = useState(null);
 
@@ -64,7 +65,25 @@ const Rank = ({ userData }) => {
       form.resetFields();
    };
 
-   const onSubmit = () => {};
+   const onSubmit = () => {
+      // const dataInput = form.getFieldsValue(true);
+      // form.validateFields().then(async () => {
+      //    let updateData;
+      //    if (editData) {
+      //       updateData = {
+      //          rank: rankList.map((v) =>
+      //             v._id === editData._id ? dataInput : v
+      //          ),
+      //       };
+      //    } else {
+      //       updateData = { rank: [...rankList, dataInput] };
+      //    }
+      //    const res = await api.put(`/api/users/${userData.id}`, updateData);
+      //    setVisible(false);
+      //    setRankList(res.data.rank);
+      //    form.resetFields();
+      // });
+   };
 
    const onEdit = (record) => {
       setEditData(record);
@@ -72,13 +91,18 @@ const Rank = ({ userData }) => {
    };
 
    const onDelete = async (record) => {
-      let res = await api.put(`/api/users/${userData.id}`, {
-         rank: rankList.filter((v) => v._id !== record._id),
-      });
-      setRankList(res.data.rank);
+      // let res = await api.put(`/api/users/${userData.id}`, {
+      //    rank: rankList.filter((v) => v._id !== record._id),
+      // });
+      // setRankList(res.data.rank);
    };
 
-   useEffect(() => {}, []);
+   // useEffect(() => {
+   //    if (visible === false) {
+   //      setEditData(null);
+   //    }
+   //    form.resetFields();
+   //  }, [visible]);
 
    const actionMenu = (record) => {
       return (

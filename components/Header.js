@@ -1,15 +1,16 @@
-import { HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined, SearchOutlined } from "@ant-design/icons";
 import Link from "next/link";
-import { Button } from "antd";
+import { Button, Input } from "antd";
 
 const Header = () => {
    return (
       <div className="header">
-         <div className="headerIcon">
-            <Link href="/">
-               <HomeOutlined style={{ fontSize: 22 }} />
-            </Link>
-         </div>
+         <Input
+            className="search"
+            placeholder="ស្វែងរក"
+            suffix={<SearchOutlined />}
+            style={{ maxWidth: "700px" }}
+         />
          <div className="headerInfo">
             <div>
                <p>

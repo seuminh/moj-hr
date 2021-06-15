@@ -27,6 +27,7 @@ import {
 const Penalty = ({ userData }) => {
    const [modalAdd, setModalAdd] = useState(false);
    const [signDate, setSignDate] = useState();
+   //   const [penaltyList, setPenaltyList] = useState([...userData.penalty]);
    const [penaltyList, setPenaltyList] = useState([]);
    const [form] = Form.useForm();
    const [editData, setEditData] = useState(null);
@@ -43,16 +44,44 @@ const Penalty = ({ userData }) => {
       form.resetFields();
    };
 
-   const onSubmit = () => {};
+   const onSubmit = () => {
+      // const dataInput = form.getFieldsValue(true);
+      // form.validateFields().then(async () => {
+      //    let updateData;
+      //    if (editData) {
+      //       updateData = {
+      //          penalty: penaltyList.map((v) =>
+      //             v._id === editData._id ? dataInput : v
+      //          ),
+      //       };
+      //    } else {
+      //       updateData = { penalty: [...penaltyList, dataInput] };
+      //    }
+      //    const res = await api.put(`/api/users/${userData.id}`, updateData);
+      //    setVisible(false);
+      //    setPenaltyList(res.data.penalty);
+      //    form.resetFields();
+      // });
+   };
 
-   useEffect(() => {}, []);
+   // useEffect(() => {
+   //    if (visible === false) {
+   //      setEditData(null);
+   //    }
+   //    form.resetFields();
+   //  }, [visible]);
 
    const onEdit = (record) => {
       setEditData(record);
       setModalAdd(true);
    };
 
-   const onDelete = () => {};
+   const onDelete = () => {
+      // let res = await api.put(`/api/users/${userData.id}`, {
+      //    penalty: penaltyList.filter((v) => v._id !== record._id),
+      // });
+      // setPenaltyList(res.data.penalty);
+   };
 
    const actionMenu = (record) => {
       return (

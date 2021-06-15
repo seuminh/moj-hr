@@ -27,6 +27,7 @@ import {
 const Praise = ({ userData }) => {
    const [modalAdd, setModalAdd] = useState(false);
    const [signDate, setSignDate] = useState();
+   //   const [praiseList, setPraiseList] = useState([...(userData.praised||[])]);
    const [praiseList, setPraiseList] = useState([]);
    const [form] = Form.useForm();
    const [editData, setEditData] = useState(null);
@@ -43,16 +44,47 @@ const Praise = ({ userData }) => {
       form.resetFields();
    };
 
-   const onSubmit = () => {};
+   const onSubmit = () => {
+      // const dataInput = form.getFieldsValue(true);
+      // form.validateFields().then(async () => {
+      //  let updateData;
+      //  if (editData) {
+      //    updateData = {
+      //      praised: praiseList.map((v) =>
+      //        v._id === editData._id ? dataInput : v
+      //      ),
+      //    };
+      //  } else {
+      //    updateData =   { praised : [...praiseList, dataInput] };
+      //  }
+      //   const res = await api.put(
+      //    `/api/users/${userData.id}`,
+      //   updateData
+      //   );
+      //   setVisible(false);
+      //   setPraiseList(res.data.praised);
+      //   form.resetFields();
+      // })
+   };
 
-   useEffect(() => {}, []);
+   // useEffect(() => {
+   //    if (visible === false) {
+   //      setEditData(null);
+   //    }
+   //    form.resetFields();
+   //  }, [visible]);
 
    const onEdit = (record) => {
       setEditData(record);
       setModalAdd(true);
    };
 
-   const onDelete = () => {};
+   const onDelete = () => {
+      // let res = await api.put(`/api/users/${userData.id}`, {
+      //    praised: praiseList.filter((v) => v._id !== record._id),
+      //  });
+      //  setPraiseList(res.data.praised);
+   };
 
    const actionMenu = (record) => {
       return (

@@ -20,6 +20,7 @@ import {
 import { UserOutlined } from "@ant-design/icons";
 
 const Education = ({ userData }) => {
+   // const [educationLevel, setEducationLevel] = useState(userData?.education || []);
    const [educationLevel, setEducationLevel] = useState([]);
    const [foreignLangLevel, setForeignLangLevel] = useState(null);
 

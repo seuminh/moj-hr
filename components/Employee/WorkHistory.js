@@ -191,6 +191,9 @@ const WorkHistory = ({ ministryStructure }) => {
    const [startDate, setStartDate] = useState();
    const [endDate, setEndDate] = useState();
    const [nowOption, setNowOption] = useState(true);
+   // const [experiencesList, setExperiencesList] = useState([
+   //    ...userData.experience,
+   //  ]);
    const [experiencesList, setExperiencesList] = useState([]);
 
    const [choiceMinistry, setChoiceMinistry] = useState("");
@@ -227,7 +230,18 @@ const WorkHistory = ({ ministryStructure }) => {
 
    const onClear = () => {};
 
-   const onSubmit = () => {};
+   const onSubmit = () => {
+      // const dataInput = form.getFieldsValue(true);
+      // form.validateFields().then(async () => {
+      //    const res = await api.put(
+      //      `/api/users/${userData.id}`,
+      //      { experience: [...experiencesList, dataInput] }
+      //    );
+      //    setVisible(false);
+      //    setExperiencesList(res.data.experience);
+      //    form.resetFields();
+      //  });
+   };
 
    const onEdit = (id, e) => {
       e.preventDefault();
